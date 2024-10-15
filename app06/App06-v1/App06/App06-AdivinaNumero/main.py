@@ -2,7 +2,7 @@ import flet as ft
 import random
 
 def  verificar_adivinanza(e,page):
-    adivinanza_usuario=int(entrada_numero,value)
+    adivinanza_usuario=int(entrada_numero.value)
     
     if adivinanza_usuario==numero_Secreto:
         texto_resultado.value="¡Felicidades! Adivinaste el numero secreto"
@@ -10,7 +10,7 @@ def  verificar_adivinanza(e,page):
         page.add(ft.Audio(src="Victoria.mp3",autoplay=True))
     elif adivinanza_usuario < numero_Secreto:
         texto_resultado.value="¡Fallaste! El numero secreto es mayor"
-        page,add(ft.Audio(src="Boing.mp3",autoplay=True))
+        page.add(ft.Audio(src="Boing.mp3",autoplay=True))
     else:
         texto_resultado.value="¡Fallaste! El numero secreto es menor"
         page.add(ft.Audio(src="Boing.mp3",autoplay=True))
@@ -31,7 +31,7 @@ def main(page: ft.Page):
     #Crear los elementos de la interfaz
     titulo=ft.Text("Adivina el número secreto entre 1 y 100",size= 20,color="white")
     entrada_numero=ft.TextField(label="Tu Adivinanza",width=150)
-    boton_adivinar=ft.ElevatedButton("Adivinar")
+    boton_adivinar=ft.ElevatedButton("Adivinar",on_click=lambda e: verificar_adivinanza(e,page))
     texto_resultado=ft.Text("",color="white")
     
     contenedor_principal=ft.Container(
